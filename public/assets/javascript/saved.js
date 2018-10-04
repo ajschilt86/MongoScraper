@@ -65,7 +65,7 @@ $(document).ready(function () {
             for (var i = 0; i < data.notes.length; i++) {
                 currentNote = $("<li class='list-group-item note'>")
                     .text(data.notes[i].noteText)
-                    .append($("<button class='btn btn-danger note-delete'>x</button>"));
+                    .append($("<button class='btn btn-primary note-delete'>x</button>"));
                 currentNote.children("button").data("_id", data.notes[i]._id);
                 notesToRender.push(currentNote);
             }

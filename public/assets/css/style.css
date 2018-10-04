@@ -23,6 +23,7 @@ body {
     height: 500px;
     padding: 0;
     font-family: 'Notable', sans-serif;
+    color: black;
     box-shadow: 10px 5px 20px 2px lightslategrey;
   }
   
@@ -33,7 +34,7 @@ body {
     bottom: 0;
     left: 0;
     z-index: auto;
-    background: linear-gradient(#333, black);
+    background: grey;
     opacity: 0.7;
   }
   
@@ -118,13 +119,21 @@ textarea {
     width: 100%;
   }
   
-  /* .bootbox-body .btn {
-    float: right;
-    margin: 5px;
-  } */
-  
 .note.list-group-item .btn {
     position: relative;
     bottom: 10px;
   }
+
+.note-delete {
+    margin-left: 20px;
+}
+
+.btn {
+    float: right;
+    margin: 5px;
+  }
+
+.modal-content {
+    width: 144%;
+}
   
