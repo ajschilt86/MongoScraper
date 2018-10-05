@@ -11,12 +11,12 @@ module.exports = {
       .then(function(dbHeadline) {
         if (dbHeadline.length === 0) {
           res.json({
-            message: "No new articles today. Check back tomorrow!"
+            message: "No new poducts today"
           });
         }
         else {
           res.json({
-            message: "Added " + dbHeadline.length + " new articles!"
+            message: "Added " + dbHeadline.length + " new poducts!"
           });
         }
       })

@@ -5,7 +5,6 @@ $(document).ready(function () {
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);
     $(".clear").on("click", handleArticleClear);
-
     function initPage() {
 
         $.get("/api/headlines?saved=false").then(function (data) {
@@ -41,7 +40,6 @@ $(document).ready(function () {
         var cardBody = $("<div class='card-body'>").text(article.summary);
         card.append(cardHeader, cardBody);
         card.data("_id", article._id);
-
         return card;
     }
 

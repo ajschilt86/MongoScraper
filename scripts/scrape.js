@@ -18,16 +18,14 @@ var scrape = function() {
       var url = $(this)
         .find("a")
         .attr("href");
-      var sum = $(this)
+      var summary = $(this)
         .find("p")
         .text()
-        .trim();
-
-     
+        .trim();   
 
         var dataToAdd = {
           headline: head,
-          summary: sum,
+          summary: summary,
           url: url
         };
 
