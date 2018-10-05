@@ -2,11 +2,15 @@ html {
     position: relative;
     min-height: 100%;
   }
+
+.scraped {
+    cursor: pointer;
+  }
   
 body {
     margin-bottom: 80px;
     background-image: url("../images/newspaper.jpg");
-    background-size: cover;
+    /* background-size: cover; */
   }
   
 .footer {
@@ -23,44 +27,29 @@ body {
     height: 500px;
     padding: 0;
     font-family: 'Notable', sans-serif;
-    color: black;
-    box-shadow: 10px 5px 20px 2px lightslategrey;
-  }
-  
-.jumbotron .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: auto;
     background: grey;
-    opacity: 0.7;
+    color: black;
+    box-shadow: 2px 2px 20px 2px lightslategrey;
   }
   
 .jumbotron .background-image {
     height: 100%;
   }
   
-.jumbotron .caption {
+.title {
     position: absolute;
     top: 30%;
     width: 100%;
     text-align: center;
   }
   
-.jumbotron .caption h1,
-.jumbotron .caption p {
-    color: white;
-  }
-  
+
 .jumbotron h1 {
-    font-size: 80px;
-    font-weight: 800;
+    font-size: 90px;
   }
   
 .jumbotron p {
-    font-size: 30px;
+    font-size: 40px;
   }
   
 .article-container {
@@ -102,12 +91,7 @@ body {
     color: white;
     display: inline-block;
     width: 80%;
-  }
-  
-
-.scrape-new {
-    cursor: pointer;
-  }
+  }  
   
 .m-top-80 {
     margin-top: 80px;
