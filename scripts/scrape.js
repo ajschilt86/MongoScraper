@@ -2,14 +2,14 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 
-var scrape = function() {
-  return axios.get("https://uncrate.com/").then(function(res) {
+var scrape = function () {
+  return axios.get("https://uncrate.com/").then(function (res) {
     var $ = cheerio.load(res.data);
 
     var articles = [];
 
 
-    $(".article").each(function(i, element) {
+    $(".article").each(function (i, element) {
 
       var head = $(this)
         .find("h1")
@@ -21,16 +21,18 @@ var scrape = function() {
       var summary = $(this)
         .find("p")
         .text()
-        .trim();   
+        .trim();
+      // var img = $(this)
+      //   .find("img")
 
-        var dataToAdd = {
-          headline: head,
-          summary: summary,
-          url: url
-        };
+      var dataToAdd = {
+        headline: head,
+        summary: summary,
+        url: url
+      };
 
-        articles.push(dataToAdd);
-      
+      articles.push(dataToAdd);
+
     });
     return articles;
   });
