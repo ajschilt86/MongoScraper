@@ -9,10 +9,10 @@ var scrape = function() {
     var articles = [];
 
 
-    $(".article-list").each(function(i, element) {
+    $(".article").each(function(i, element) {
 
       var head = $(this)
-        .find("h2")
+        .find("h1")
         .text()
         .trim();
       var url = $(this)
@@ -23,18 +23,16 @@ var scrape = function() {
         .text()
         .trim();
 
-      if (head && sum && url) {
-        var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+     
 
         var dataToAdd = {
-          headline: headNeat,
-          summary: sumNeat,
-          url: "https://uncrate.com/" + url
+          headline: head,
+          summary: sum,
+          url: url
         };
 
         articles.push(dataToAdd);
-      }
+      
     });
     return articles;
   });

@@ -13,12 +13,12 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/saved">Saved Articles
+                <a class="nav-link" href="/saved">Saved Products
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-secondary clear">CLEAR ARTICLES!</a>
+                <a class="btn btn-secondary clear">Clear Products!</a>
             </li>
         </ul>
     </div>
@@ -30,7 +30,7 @@
         <div class="background-image">
         </div>
         <div class="title">
-            <h1>Saved Articles</h1>
+            <h1>Saved products</h1>
         </div>
     </div>
     <div class="container-fluid article-container">
@@ -40,7 +40,7 @@
                 <h3>
                     <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.headline}}</a>
                     <a class="btn btn-primary delete">Delete From Saved</a>
-                    <a class="btn btn-success notes">Article Notes</a>
+                    <a class="btn btn-success notes">products Notes</a>
                 </h3>
             </div>
             <div class="card-body">{{this.summary}}</div>
@@ -48,7 +48,7 @@
         {{/each}}
         {{#unless articles.length}}
         <div class="text-center">
-            <h4>You have not saved any articles!</h4>
+            <h4>You have not saved any products!</h4>
         </div>
         {{/unless}}
     </div>

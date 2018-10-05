@@ -13,13 +13,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/saved">Saved Articles</a>
+                <a class="nav-link" href="/saved">Saved Products</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-secondary scrape-new scraped">SCRAPE NEW ARTICLES!</a>
+                <a class="btn btn-secondary scrape-new scraped">Scrape New Products</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-secondary clear">CLEAR ARTICLES!</a>
+                <a class="btn btn-secondary clear">Clear Products</a>
             </li>
         </ul>
     </div>
@@ -30,8 +30,8 @@
         <div class="background-image">
         </div>
         <div class="title">
-            <h1>Mongo Scraper</h1>
-            <p>New York Times Edition</p>
+            <h1>Uncrate Scraper</h1>
+            <p>Scrape for some new products</p>
         </div>
     </div>
     <div class="container-fluid article-container">
@@ -40,14 +40,14 @@
             <div class="card-header">
                 <h3>
                     <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.headline}}</a>
-                    <a class="btn btn-primary save">Save Article</a>
+                    <a class="btn btn-primary save">Save product</a>
                 </h3>
             </div>
             <div class="card-body">{{this.summary}}</div>
         </div>
         {{/each}} {{#unless articles.length}}
         <div class='text-center'>
-            <h4>You have not scraped any articles!</h4>
+            <h4>You have not scraped any products!</h4>
         </div>
         {{/unless}}
     </div>
