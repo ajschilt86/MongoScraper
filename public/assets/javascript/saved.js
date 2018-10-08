@@ -1,10 +1,10 @@
 $(document).ready(function () {
     var articleContainer = $(".article-container");
-    $(document).on("click", ".btn.delete", handleArticleDelete);
-    $(document).on("click", ".btn.notes", handleArticleNotes);
-    $(document).on("click", ".btn.save", handleNoteSave);
-    $(document).on("click", ".btn.note-delete", handleNoteDelete);
-    $(".clear").on("click", handleArticleClear);
+    $(document).on("click", ".btn.delete", articleDelete);
+    $(document).on("click", ".btn.notes", articleNotes);
+    $(document).on("click", ".btn.save", noteSave);
+    $(document).on("click", ".btn.note-delete", noteDelete);
+    $(".clear").on("click", articleClear);
 
     function initPage() {
         $.get("/api/headlines?saved=true").then(function (data) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
         $(".note-container").append(notesToRender);
     }
 
-    function handleArticleDelete() {
+    function articleDelete() {
         var articleToDelete = $(this)
             .parents(".card")
             .data();
@@ -90,7 +90,7 @@ $(document).ready(function () {
             }
         });
     }
-    function handleArticleNotes(event) {
+    function articleNotes(event) {
         var currentArticle = $(this)
             .parents(".card")
             .data();
@@ -115,7 +115,7 @@ $(document).ready(function () {
         });
     }
 
-    function handleNoteSave() {
+    function noteSave() {
         var noteData;
         var newNote = $(".bootbox-body textarea")
             .val()
@@ -129,7 +129,7 @@ $(document).ready(function () {
         }
     }
 
-    function handleNoteDelete() {
+    function noteDelete() {
         var noteToDelete = $(this).data("_id");
         $.ajax({
             url: "/api/notes/" + noteToDelete,
@@ -139,7 +139,7 @@ $(document).ready(function () {
         });
     }
 
-    function handleArticleClear() {
+    function articleClear() {
         $.get("api/clear")
             .then(function () {
                 articleContainer.empty();

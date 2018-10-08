@@ -1,14 +1,14 @@
 
 $(document).ready(function () {
 
-    var articleContainer = $(".article-container");
-    $(document).on("click", ".btn.save", handleArticleSave);
-    $(document).on("click", ".scrape-new", handleArticleScrape);
-    $(".clear").on("click", handleArticleClear);
+    var articleCont = $(".article-container");
+    $(document).on("click", ".btn.save", articleSave);
+    $(document).on("click", ".scrape-new", articleScrape);
+    $(".clear").on("click", articleClear);
     function initPage() {
 
         $.get("/api/headlines?saved=false").then(function (data) {
-            articleContainer.empty();
+            articleCont.empty();
 
             if (data && data.length) {
                 renderArticles(data);
@@ -24,7 +24,7 @@ $(document).ready(function () {
         for (var i = 0; i < articles.length; i++) {
             articleCards.push(createCard(articles[i]));
         }
-        articleContainer.append(articleCards);
+        articleCont.append(articleCards);
     }
 
     function createCard(article) {
@@ -43,18 +43,7 @@ $(document).ready(function () {
         return card;
     }
 
-    function renderEmpty() {
-        var emptyAlert = $(
-            [
-                "<div class='text-center'>",
-                "<h4>You have not scraped any articles!</h4>",
-                "</div>"
-            ].join("")
-        );
-        articleContainer.append(emptyAlert);
-    }
-
-    function handleArticleSave() {
+    function articleSave() {
         var articleToSave = $(this)
             .parents(".card")
             .data();
@@ -74,17 +63,29 @@ $(document).ready(function () {
         });
     }
 
-    function handleArticleScrape() {
+    function articleScrape() {
         $.get("/api/fetch").then(function (data) {
             initPage();
             bootbox.alert($("<h3 class='text-center m-top-80'>").text(data.message));
         });
     }
 
-    function handleArticleClear() {
+    function articleClear() {
         $.get("api/clear").then(function () {
-            articleContainer.empty();
+            articleCont.empty();
             initPage();
         });
     }
+
+    function renderEmpty() {
+        var emptyAlert = $(
+            [
+                "<div class='text-center'>",
+                "<h4>You have not scraped any articles!</h4>",
+                "</div>"
+            ].join("")
+        );
+        articleCont.append(emptyAlert);
+    }
+
 });
