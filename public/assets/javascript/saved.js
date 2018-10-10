@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var articleContainer = $(".article-container");
-    $(document).on("click", ".btn.delete", articleDelete);
-    $(document).on("click", ".btn.notes", articleNotes);
+    $(document).on("click", ".btn.delete", productDelete);
+    $(document).on("click", ".btn.notes", productNotes);
     $(document).on("click", ".btn.save", noteSave);
     $(document).on("click", ".btn.note-delete", noteDelete);
     $(".clear").on("click", articleClear);
@@ -10,14 +10,15 @@ $(document).ready(function () {
         $.get("/api/headlines?saved=true").then(function (data) {
             articleContainer.empty();
             if (data && data.length) {
-                renderArticles(data);
+                renderProducts(data);
             } else {
                 renderEmpty();
             }
         });
     }
 
-    function renderArticles(articles) {
+    //shows all the products
+    function renderProducts(articles) {
         var articleCards = [];
         for (var i = 0; i < articles.length; i++) {
             articleCards.push(createCard(articles[i]));
@@ -25,6 +26,7 @@ $(document).ready(function () {
         articleContainer.append(articleCards);
     }
 
+    //show the info for everything
     function createCard(article) {
         var card = $("<div class='card'>");
         var cardHeader = $("<div class='card-header'>").append(
@@ -33,7 +35,7 @@ $(document).ready(function () {
                     .attr("href", article.url)
                     .text(article.headline),
                 $("<a class='btn btn-primary delete'>Delete From Saved</a>"),
-                $("<a class='btn btn-success notes'>Article Notes</a>")
+                $("<a class='btn btn-success notes'>Product Notes</a>")
             )
         );
 
@@ -44,17 +46,19 @@ $(document).ready(function () {
         return card;
     }
 
+    //tells user there are no products scraped
     function renderEmpty() {
         var emptyAlert = $(
             [
                 "<div class='text-center'>",
-                "<h4>You have not scraped any articles!</h4>",
+                "<h4>You have not scraped any products!</h4>",
                 "</div>"
             ].join("")
         );
         articleContainer.append(emptyAlert);
     }
 
+    //shows the list of notes
     function renderNotesList(data) {
         var notesToRender = [];
         var currentNote;
@@ -73,7 +77,8 @@ $(document).ready(function () {
         $(".note-container").append(notesToRender);
     }
 
-    function articleDelete() {
+    // deletes
+    function productDelete() {
         var articleToDelete = $(this)
             .parents(".card")
             .data();
@@ -90,13 +95,15 @@ $(document).ready(function () {
             }
         });
     }
-    function articleNotes(event) {
-        var currentArticle = $(this)
+
+    //product notes
+    function productNotes(event) {
+        var currentProduct = $(this)
             .parents(".card")
             .data();
-        $.get("/api/notes/" + currentArticle._id).then(function (data) {
+        $.get("/api/notes/" + currentProduct._id).then(function (data) {
             var modalText = $("<div class='container-fluid text-center'>").append(
-                $("<h4>").text("Notes For Article: " + currentArticle._id),
+                $("<h4>").text("Notes For products: " + currentProduct._id),
                 $("<hr>"),
                 $("<ul class='list-group note-container'>"),
                 $("<textarea placeholder='New Note' rows='4' cols='60'>"),
@@ -107,14 +114,14 @@ $(document).ready(function () {
                 closeButton: true
             });
             var noteData = {
-                _id: currentArticle._id,
+                _id: currentProduct._id,
                 notes: data || []
             };
             $(".btn.save").data("article", noteData);
             renderNotesList(noteData);
         });
     }
-
+    //save
     function noteSave() {
         var noteData;
         var newNote = $(".bootbox-body textarea")
@@ -129,6 +136,7 @@ $(document).ready(function () {
         }
     }
 
+    //delete
     function noteDelete() {
         var noteToDelete = $(this).data("_id");
         $.ajax({
@@ -139,6 +147,7 @@ $(document).ready(function () {
         });
     }
 
+    //clear products
     function articleClear() {
         $.get("api/clear")
             .then(function () {

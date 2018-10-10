@@ -2,7 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const hb = require("express-handlebars");
 
+//port
 const PORT = process.env.PORT || 8080;
+
+//express
 const app = express();
 const routes = require("./routes");
 

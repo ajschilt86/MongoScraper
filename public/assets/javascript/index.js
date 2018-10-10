@@ -27,6 +27,7 @@ $(document).ready(function () {
         articleCont.append(articleCards);
     }
 
+    //creates the card that contains all the information
     function createCard(article) {
         var card = $("<div class='card'>");
         var cardHeader = $("<div class='card-header'>").append(
@@ -43,6 +44,7 @@ $(document).ready(function () {
         return card;
     }
 
+    //saves articles 
     function articleSave() {
         var articleToSave = $(this)
             .parents(".card")
@@ -63,6 +65,7 @@ $(document).ready(function () {
         });
     }
 
+    //scrapes articles
     function articleScrape() {
         $.get("/api/fetch").then(function (data) {
             initPage();
@@ -76,12 +79,13 @@ $(document).ready(function () {
             initPage();
         });
     }
-
+    
+    //tell you when there are no products scraped
     function renderEmpty() {
         var emptyAlert = $(
             [
                 "<div class='text-center'>",
-                "<h4>You have not scraped any articles!</h4>",
+                "<h4>You have not scraped any products!</h4>",
                 "</div>"
             ].join("")
         );
