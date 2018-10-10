@@ -18,7 +18,7 @@ $(document).ready(function () {
             }
         });
     }
-
+    //show all the articles
     function renderArticles(articles) {
         var articleCards = [];
         for (var i = 0; i < articles.length; i++) {
